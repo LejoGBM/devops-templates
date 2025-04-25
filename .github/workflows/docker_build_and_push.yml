@@ -13,6 +13,11 @@ on:
         required: true
         type: string
 
+      environment:
+        description: "Environment (dev, qa, prod)"
+        required: true
+        type: string          
+
       dockerfile-path:
         description: "Dockerfile path"
         required: false
@@ -36,6 +41,10 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
+      - name: Check Environment
+        run: |
+          echo "Current Environment: ${{ inputs.environment }}"
+    
       - name: Checkout code
         uses: actions/checkout@v3
 
